@@ -1,7 +1,6 @@
 <template>
   <LayoutNav class="layout-nav">
     <NumberPad/>
-    <Screen/>
     <Types />
     <Notes/>
     <New/>
