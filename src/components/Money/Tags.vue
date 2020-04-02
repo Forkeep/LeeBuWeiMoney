@@ -2,30 +2,10 @@
   <div class="tags">
     <div class="placeholder"></div>
     <ul>
-      <li>衣</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>食</li>
-      <li>衣</li>
-      <li>食</li>
+      <li v-for="tag in tagsSource" :key="tag" @click="toggle(tag)" :class="{selected:selectedTags.indexOf(tag)>=0}">
+        {{tag}}
+      </li>
+
     </ul>
   </div>
 
@@ -33,10 +13,22 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class Tags extends Vue {
+    @Prop() readonly tagsSource: string[] | undefined;
+    selectedTags: string[] = [];
+
+    toggle(tag: string) {
+      const index = this.selectedTags.indexOf(tag);
+      if (index>=0){
+        this.selectedTags.splice(index,1)
+      }else {
+        this.selectedTags.push(tag);
+      }
+    }
+
   }
 </script>
 
@@ -65,7 +57,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        &.selected{
+         background-color: $color-highlight;
+        }
       }
+
     }
   }
 

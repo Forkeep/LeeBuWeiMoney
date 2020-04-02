@@ -4,7 +4,7 @@
     <Types />
     <Notes/>
     <New/>
-    <Tags/>
+    <Tags :tags-source="tagsSource"/>
   </LayoutNav>
 </template>
 
@@ -23,6 +23,8 @@
     components: {Tags, New, Notes, Types, Screen, NumberPad, Labels}
   })
   export default class Money extends Vue {
+    tagsSource: string[] | undefined = ['衣','食','住','行','玩'];
+
   }
 </script>
 
