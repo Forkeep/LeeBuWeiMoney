@@ -3,8 +3,7 @@
     <NumberPad/>
     <Types />
     <Notes/>
-    <New/>
-    <Tags :tags-source="tagsSource"/>
+    <Tags :tags-source.sync="tagsSource"/>
   </LayoutNav>
 </template>
 
@@ -13,14 +12,12 @@
   import {Component} from 'vue-property-decorator';
   import Labels from '@/views/Labels.vue';
   import NumberPad from '@/components/Money/NumberPad.vue';
-  import Screen from '@/components/Money/Screen.vue';
   import Types from '@/components/Money/Types.vue';
   import Notes from '@/components/Money/Notes.vue';
-  import New from '@/components/Money/New.vue';
   import Tags from '@/components/Money/Tags.vue';
 
   @Component({
-    components: {Tags, New, Notes, Types, Screen, NumberPad, Labels}
+    components: {Tags, Notes, Types, NumberPad, Labels}
   })
   export default class Money extends Vue {
     tagsSource: string[] | undefined = ['衣','食','住','行','玩'];
