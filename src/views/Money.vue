@@ -1,7 +1,8 @@
 <template>
   <LayoutNav class="layout-nav">
+    {{record}}
     <NumberPad @update:value="onUpdateAmount"/>
-    <Types @update:value="onUpdateType"/>
+    <Types :type.sync="record.type" />
     <Notes @update:value="onUpdateNotes"/>
     <Tags :tags-source.sync="tagsSource" @update:value="onUpdateTags"/>
   </LayoutNav>
@@ -28,7 +29,7 @@
   })
   export default class Money extends Vue {
     tagsSource: string[] | undefined = ['衣', '食', '住', '行', '玩'];
-    record: Record = {tags: [], type: '', notes: '', amount: 0};
+    record: Record = {tags: [], type: '-', notes: ' ', amount: 0};
 
     onUpdateTags(value: string[]) {
       this.record.tags = value;

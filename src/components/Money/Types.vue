@@ -7,24 +7,15 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop, Watch} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class Types extends Vue {
     @Prop(String) readonly name: string | undefined;
-
-    @Watch('type')
-    onTypeChange() {
-      this.$emit('update:value', this.type);
-    }
-
-    type = '-';
+    @Prop(String) readonly type!: string;
 
     selectType(type: string) {
-      if (type !== '-' && type !== '+') {
-        throw new Error('类型错误！');
-      }
-      this.type = type;
+      this.$emit('update:type', type);
     }
   }
 </script>
