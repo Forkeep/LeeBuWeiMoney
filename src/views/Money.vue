@@ -18,7 +18,7 @@
     </div>
     <div class="screen"><span>100</span></div>
     <ul class="types">
-      <li class="income">收入</li>
+      <li class="income selected">收入</li>
       <li class="cost">支出</li>
     </ul>
     <div class="notes">
@@ -128,6 +128,16 @@
         display: flex;
         justify-content: center;
         font-size: 24px;
+        position: relative;
+        &.selected::after{
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background-color: #333;
+        }
       }
 
       .income {
