@@ -49,5 +49,7 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/assets/style/reset.scss";
+  @import "~@/assets/style/helper.scss";
 
 </style>
