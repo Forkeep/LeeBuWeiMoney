@@ -2,7 +2,7 @@
   <LayoutNav class="layout-nav">
     <NumberPad/>
     <Screen/>
-    <Types/>
+    <Types />
     <Notes/>
     <New/>
     <Tags/>
