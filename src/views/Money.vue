@@ -1,9 +1,9 @@
 <template>
   <LayoutNav class="layout-nav">
-    <NumberPad/>
-    <Types />
-    <Notes/>
-    <Tags :tags-source.sync="tagsSource"/>
+    <NumberPad @update:value="onUpdateAmount"/>
+    <Types @update:value="onUpdateType"/>
+    <Notes @update:value="onUpdateNotes"/>
+    <Tags :tags-source.sync="tagsSource" @update:value="onUpdateTags"/>
   </LayoutNav>
 </template>
 
@@ -16,11 +16,36 @@
   import Notes from '@/components/Money/Notes.vue';
   import Tags from '@/components/Money/Tags.vue';
 
+  type Record = {
+    tags: string[];
+    type: string;
+    notes: string;
+    amount: number;
+  }
+
   @Component({
     components: {Tags, Notes, Types, NumberPad, Labels}
   })
   export default class Money extends Vue {
-    tagsSource: string[] | undefined = ['衣','食','住','行','玩'];
+    tagsSource: string[] | undefined = ['衣', '食', '住', '行', '玩'];
+    record: Record = {tags: [], type: '', notes: '', amount: 0};
+
+    onUpdateTags(value: string[]) {
+      this.record.tags = value;
+    }
+
+    onUpdateNotes(value: string) {
+      this.record.notes = value;
+    }
+
+    onUpdateAmount(value: string) {
+      this.record.amount = parseFloat(value);
+    }
+
+    onUpdateType(value: string) {
+      this.record.type = value;
+    }
+
 
   }
 </script>

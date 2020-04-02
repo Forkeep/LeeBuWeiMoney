@@ -1,8 +1,6 @@
 <template>
   <div class="notes">
-    {{value}}
-
-    <label><span class="beizhu"><strong>备注</strong></span><input type="text" v-model="value" placeholder="请在这里输入备注"/>
+    <label><span class="beizhu"><strong>备注</strong></span><input type="text" v-model="value" @input="onUpdateValue" placeholder="请在这里输入备注"/>
     </label>
   </div>
 </template>
@@ -14,8 +12,11 @@
   @Component
   export default class Notes extends Vue {
     value = '';
-
+    onUpdateValue(){
+      this.$emit('update:value',this.value)
+    }
   }
+
 </script>
 
 <style lang="scss" scoped>

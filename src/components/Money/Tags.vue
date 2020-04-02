@@ -19,12 +19,16 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
+  import {Component, Prop, Watch} from 'vue-property-decorator';
 
   @Component
   export default class Tags extends Vue {
     @Prop() readonly tagsSource: string[] | undefined;
     selectedTags: string[] = [];
+    @Watch('selectedTags',{deep:false})
+    onSelectedTagsChange(){
+      this.$emit('update:value',this.selectedTags)
+    }
 
     toggle(tag: string) {
       const index = this.selectedTags.indexOf(tag);
@@ -37,6 +41,9 @@
 
     createTag() {
       const newTag = window.prompt('请输入标签名');
+      if (!newTag){
+        return;
+      }
       if (this.tagsSource) {
         if (this.tagsSource.indexOf(newTag as string) >= 0) {
           alert('此标签已存在');

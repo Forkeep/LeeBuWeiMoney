@@ -70,7 +70,7 @@
     }
 
     ok() {
-      console.log('ok')
+      this.$emit('update:value',this.output)
     }
   }
 </script>
