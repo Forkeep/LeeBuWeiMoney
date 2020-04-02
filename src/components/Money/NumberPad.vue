@@ -5,15 +5,15 @@
       <button @click="inputNumber">1</button>
       <button @click="inputNumber">2</button>
       <button @click="inputNumber">3</button>
-      <button >删除</button>
+      <button @click="deleteNum">删除</button>
       <button @click="inputNumber">4</button>
       <button @click="inputNumber">5</button>
       <button @click="inputNumber">6</button>
-      <button>清空</button>
+      <button @click="clearAll">清空</button>
       <button @click="inputNumber">7</button>
       <button @click="inputNumber">8</button>
       <button @click="inputNumber">9</button>
-      <button class="ok">OK</button>
+      <button @click="ok" class="ok">OK</button>
       <button  @click="inputNumber" class="zero">0</button>
       <button @click="inputNumber" class="dot">.</button>
     </div>
@@ -29,11 +29,49 @@
     output = '0';
 
     inputNumber(event: MouseEvent) {
-      if (event.target){
-        console.log((event.target as HTMLButtonElement).textContent);
+      if (event.target) {
+        const button = (event.target as HTMLButtonElement);
+        const currentNum = button.textContent as string;
+        if (this.output.length === 16) {
+          return;
+        }
+        if (this.output.indexOf('.') >= 0) {
+          if (currentNum === '.') {
+            return;
+          }
+        }
+        if (this.output === '0') {
+          if (currentNum === '0') {
+            return;
+          } else if ('123456789'.indexOf(currentNum) >= 0) {
+            this.output = currentNum;
+            return;
+          } else {
+            this.output += currentNum;
+          }
+        } else {
+          this.output += currentNum;
+          return;
+        }
+
       }
     }
 
+    deleteNum() {
+      if (this.output.length === 1) {
+        this.output = '0';
+      } else {
+        this.output = this.output.slice(0, -1);
+      }
+    }
+
+    clearAll() {
+      this.output = '0'
+    }
+
+    ok() {
+      console.log('ok')
+    }
   }
 </script>
 

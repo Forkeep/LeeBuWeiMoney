@@ -1,6 +1,8 @@
 <template>
   <div class="notes">
-    <label><span class="beizhu"><strong>备注</strong></span><input type="text" placeholder="请在这里输入备注"/>
+    {{value}}
+
+    <label><span class="beizhu"><strong>备注</strong></span><input type="text" :value="value"  @input="value=$event.target.value" placeholder="请在这里输入备注"/>
     </label>
   </div>
 </template>
@@ -11,6 +13,8 @@
 
   @Component
   export default class Notes extends Vue {
+    value = '';
+
   }
 </script>
 
