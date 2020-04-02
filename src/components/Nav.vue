@@ -25,13 +25,23 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import labels from '@/assets/icons/labels.svg';
-  import money from '@/assets/icons/money.svg';
-  import statistics from '@/assets/icons/statistics.svg';
+  // import labels from '@/assets/icons/labels.svg';
+  // import money from '@/assets/icons/money.svg';
+  // import statistics from '@/assets/icons/statistics.svg';
+  //
+  // console.log(labels);
+  // console.log(money);
+  // console.log(statistics);
+  const importAll = (requireContext: __WebpackModuleApi.RequireContext) => {
+    requireContext.keys().forEach(requireContext);
+  };
+  try {
+    importAll(require.context('../assets/icons', true, /\.svg$/));
+  } catch (e) {
+    console.log(e);
+  }
 
-  console.log(labels);
-  console.log(money);
-  console.log(statistics);
+
   import {Component} from 'vue-property-decorator';
 
 
