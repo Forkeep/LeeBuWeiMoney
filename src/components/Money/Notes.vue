@@ -2,7 +2,7 @@
   <div class="notes">
     {{value}}
 
-    <label><span class="beizhu"><strong>备注</strong></span><input type="text" :value="value"  @input="value=$event.target.value" placeholder="请在这里输入备注"/>
+    <label><span class="beizhu"><strong>备注</strong></span><input type="text" v-model="value" placeholder="请在这里输入备注"/>
     </label>
   </div>
 </template>
