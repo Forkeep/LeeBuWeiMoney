@@ -1,6 +1,5 @@
 <template>
   <LayoutNav class="layout-nav">
-    {{recordList}}
     <NumberPad @update:value="onUpdateAmount" @save="saveOneRecord"/>
     <Types :type.sync="record.type"/>
     <Notes @update:value="onUpdateNotes"/>
