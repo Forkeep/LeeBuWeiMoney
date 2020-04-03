@@ -2,74 +2,14 @@
   <LayoutNav>
     <div class="labels-wrapper">
       <ul class="labels-list">
-        <li><span>衣</span>
+        <li v-for="label in labelsList" :key="label"><span>{{label}}</span>
           <Icon name="right"/>
         </li>
-        <li><span>衣</span>
-          <Icon name="right"/>
-        </li>
-        <li><span>衣</span>
-          <Icon name="right"/>
-        </li>
-        <li><span>衣</span>
-          <Icon name="right"/>
-        </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li>
-        <li><span>衣</span>
-          <Icon name="right"/>
-        </li>
-        <li><span>衣</span>
-          <Icon name="right"/>
-        </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li> <li><span>衣</span>
-        <Icon name="right"/>
-      </li>
 
-
-
-        <li><span>食</span>
-          <Icon name="right"/>
-        </li>
-        <li><span>住</span>
-          <Icon name="right"/>
-        </li>
-        <li><span>行</span>
-          <Icon name="right"/>
-        </li>
       </ul>
       <div class="zhanwei">
         <div class="add-labels">
-          <button>新增标签</button>
+          <button @click="createLabel">新增标签</button>
         </div>
       </div>
     </div>
@@ -80,9 +20,16 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
+  import {labelModel} from '@/models/LabelsModel';
 
   @Component
   export default class Labels extends Vue {
+    labelsList = labelModel.fetch();
+
+    createLabel() {
+      const newLabel = window.prompt('请输入新标签名');
+      labelModel.saveLabel(this.labelsList, newLabel as string);
+    }
   }
 </script>
 

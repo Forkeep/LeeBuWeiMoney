@@ -41,15 +41,9 @@
 
     createTag() {
       const newTag = window.prompt('请输入标签名');
-      if (!newTag){
-        return;
-      }
-      if (this.tagsSource) {
-        if (this.tagsSource.indexOf(newTag as string) >= 0) {
-          alert('此标签已存在');
-          return;
-        }
-        this.$emit('update:tagsSource', [...this.tagsSource, newTag]);
+
+      if (this.tagsSource){
+        this.$emit('createLabel',[...this.tagsSource,newTag]);
       }
 
     }
