@@ -16,22 +16,15 @@
   import Types from '@/components/Money/Types.vue';
   import Notes from '@/components/Money/Notes.vue';
   import Tags from '@/components/Money/Tags.vue';
-
-  type Record = {
-    tags: string[];
-    type: string;
-    notes: string;
-    amount: number;
-    createDate: Date;
-  }
+  import {model} from '@/model';
 
   @Component({
     components: {Tags, Notes, Types, NumberPad, Labels}
   })
   export default class Money extends Vue {
     tagsSource: string[] | undefined = ['衣', '食', '住', '行', '玩'];
-    record: Record = {tags: [], type: '-', notes: ' ', amount: 0};
-    recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
+    record: RecordItem = {tags: [], type: '-', notes: ' ', amount: 0, createDate: undefined};
+    recordList = model.fetch();
 
     onUpdateTags(value: string[]) {
       this.record.tags = value;
@@ -47,12 +40,11 @@
 
 
     saveOneRecord() {
-      const deepClone: Record = JSON.parse(JSON.stringify(this.record));
+      const deepClone = model.deepClone(this.record);
       deepClone.createDate = new Date();
       this.recordList.push(deepClone);
-      console.log(this.recordList);
       if (this.recordList) {
-        window.localStorage.setItem('recordList', JSON.stringify(this.recordList));
+        model.saveRecord(this.recordList);
       }
     }
 
