@@ -24,6 +24,8 @@
   .content{
     flex-grow: 1;
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
 }
