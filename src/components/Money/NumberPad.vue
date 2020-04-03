@@ -70,10 +70,17 @@
     }
 
     ok() {
-      this.$emit('update:value', this.output);
-      this.$emit('save', this.output);
-      alert('纪录成功');
-      this.output = '0';
+      if (this.output !== '0') {
+        if (this.output === '0.') {
+          this.output = '0';
+          return;
+        }
+        this.$emit('update:value', this.output);
+        this.$emit('save', this.output);
+        alert('纪录成功');
+        this.output = '0';
+      }
+
     }
   }
 </script>
