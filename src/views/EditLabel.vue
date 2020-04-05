@@ -2,7 +2,7 @@
   <LayoutNav class="edit-label">
     <div class="edit-wrapper">
       <div class="edit-label-head">
-        <Icon name="left" class="back"/>
+        <Icon name="left" class="back" @click="goBack"/>
         <span>编辑标签</span>
       </div>
       <div class="label-name">
@@ -24,15 +24,20 @@
   @Component
   export default class EditLabel extends Vue {
     currentLabel = '';
+
     created() {
       this.currentLabel = this.$route.params.label;
       const labels = labelModel.fetch();
-      const delLabel =  labels.filter(t => t === this.currentLabel)[0];
-      if (delLabel){
-        console.log(delLabel)
-      }else {
-        this.$router.replace('/404')
+      const delLabel = labels.filter(t => t === this.currentLabel)[0];
+      if (delLabel) {
+        console.log(delLabel);
+      } else {
+        this.$router.replace('/404');
       }
+    }
+
+    goBack() {
+      this.$router.back();
     }
   }
 </script>

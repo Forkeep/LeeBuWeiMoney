@@ -16,3 +16,11 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app');
+
+
+//谷歌浏览器会奏效，微信无需此代码也可奏效
+window.onload = function () {
+  setTimeout(function () {
+    window.scrollTo(0, 1000);
+  });
+};
