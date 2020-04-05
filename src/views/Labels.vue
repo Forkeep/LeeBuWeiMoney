@@ -1,12 +1,12 @@
 <template>
   <LayoutNav>
     <div class="labels-wrapper">
-      <ul class="labels-list">
-        <li v-for="label in labelsList" :key="label"><span>{{label}}</span>
+      <div class="labels-list">
+        <router-link class="label-li" v-for="label in labelsList" :key="label" :to=" `/labels/edit/${label}` "><span>{{label}}</span>
           <Icon name="right"/>
-        </li>
+        </router-link>
 
-      </ul>
+      </div>
       <div class="zhanwei">
         <div class="add-labels">
           <button @click="createLabel">新增标签</button>
@@ -41,7 +41,7 @@
     flex-direction: column;
 
     .labels-list {
-      li {
+      .label-li {
         border-bottom: 1px solid #eee;
         display: flex;
         margin: 0 0 0 16px;
