@@ -17,10 +17,16 @@ const labelModel = {
           window.localStorage.setItem(localStorageKeyNameLabels, JSON.stringify(labelList));
         }
       }
-
-
     }
   },
+  deleteLabel(name: string) {
+    const labelList: string[] = JSON.parse(window.localStorage.getItem(localStorageKeyNameLabels) || '[]');
+    console.log(labelList);
+    const index: number = labelList.indexOf(name);
+    labelList.splice(index, 1);
+    console.log(labelList);
+    window.localStorage.setItem(localStorageKeyNameLabels, JSON.stringify(labelList));
+  }
 };
 
 export {labelModel}

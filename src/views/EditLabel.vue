@@ -10,7 +10,7 @@
         <span class="item">{{currentLabel}}</span>
       </div>
       <div class="del-label">
-        <button>删除标签</button>
+        <button @click="deleteLabel">删除标签</button>
       </div>
     </div>
   </LayoutNav>
@@ -37,6 +37,11 @@
     }
 
     goBack() {
+      this.$router.back();
+    }
+
+    deleteLabel() {
+      labelModel.deleteLabel(this.currentLabel);
       this.$router.back();
     }
   }
