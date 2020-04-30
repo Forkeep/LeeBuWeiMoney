@@ -16,7 +16,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .layout-wrapper{
   height: 100vh;
   display: flex;
