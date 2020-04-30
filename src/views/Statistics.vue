@@ -7,45 +7,127 @@
     <div class="inout-content">
       <ol class="record-oneDay">
         <li class="record-header"><span>今天日期</span><span>90元</span></li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
       </ol>
       <ol class="record-oneDay">
         <li class="record-header"><span>今天日期</span><span>90元</span></li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
       </ol>
       <ol class="record-oneDay">
         <li class="record-header"><span>今天日期</span><span>90元</span></li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
-        <li>20</li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+      </ol>
+      <ol class="record-oneDay">
+        <li class="record-header"><span>今天日期</span><span>90元</span></li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
+        <li>
+          <div class="money-message">
+            <span class="label">吃</span>
+            <span class="note">备注</span>
+          </div>
+          <span class="money">90元</span>
+        </li>
       </ol>
     </div>
   </LayoutNav>
@@ -68,7 +150,7 @@
     flex-direction: column;
 
     .inout-tab {
-      height: 64px;
+      min-height: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -97,11 +179,20 @@
         display: flex;
         justify-content: space-between;
         align-content: center;
+        .money-message{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .money{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
       }
       li.record-header{
         background-color: #f5f5f5;
         span{
-          border: 1px solid red;
           display: flex;
           justify-content: center;
           align-items: center;
