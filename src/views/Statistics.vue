@@ -1,12 +1,16 @@
 <template>
   <LayoutNav class="statistics-wrapper">
     <ul class="inout-tab">
-      <li class="selected">支出</li>
-      <li>收入</li>
+      <li :class=" tab_type === '-' ? 'selected' :'' " @click="tab_type = '-'">支出</li>
+      <li :class=" tab_type === '+' ? 'selected' :'' " @click="tab_type = '+'">收入</li>
     </ul>
+    {{currentRecord}}
     <div class="inout-content">
       <ol class="record-oneDay">
-        <li class="record-header"><span>今天日期</span><span>90元</span></li>
+        <li class="record-header">
+          <span>今天日期</span>
+          <span>90元</span>
+        </li>
         <li>
           <div class="money-message">
             <span class="label">吃</span>
@@ -139,6 +143,13 @@
 
   @Component
   export default class Statistics extends Vue {
+      tab_type = '-';
+      get currentRecord(){
+        this.$store.commit('deepCloneRecordList');
+        this.$store.commit('getCurrentList',this.tab_type);
+        console.log(this.$store.state.currentList);
+        return this.$store.state.currentList;
+      }
   }
 </script>
 

@@ -5,4 +5,3 @@ type RecordItem = {
   amount: number;
   createDate: Date|undefined;
 }
-
