@@ -7,7 +7,7 @@
     <div class="inout-content">
       <ol class="record-oneDay" v-for="(records,index) in groupRecord" :key="records.key">
         <li class="record-header">
-          <span>{{index}}</span>
+          <span>{{beautify(index)}}</span>
           <span>￥90</span>
         </li>
         <li v-for="item in records" :key="item.key">
@@ -48,9 +48,23 @@
     outputLabel(labelList: string[]) {
       let label = '';
       for (let i = 0; i < labelList.length; i++) {
-        label += '、'+labelList[i];
+        label += '、' + labelList[i];
       }
-      return label.slice(1)
+      return label.slice(1);
+    }
+
+    beautify(string: string) {
+      const day = dayjs(string);
+      const now = dayjs();
+      if (day.isSame(now, 'day')) {
+        return '今天';
+      } else if (day.isSame(now.subtract(1, 'day'), 'day')) {
+        return '昨天';
+      } else if (day.isSame(now.subtract(2, 'day'), 'day')) {
+        return '前天';
+      }else {
+        return day.format('YYYY年M月D日');
+      }
     }
   }
 </script>
@@ -92,25 +106,31 @@
         display: flex;
         justify-content: space-between;
         align-content: center;
-        .money-message{
+
+        .money-message {
           display: flex;
           align-items: center;
           justify-content: center;
-          .note{
+
+          .note {
             margin-left: 5px;
             color: #666666;
             font-size: 12px;
           }
         }
-        .money{
+
+        .money {
           display: flex;
           align-items: center;
           justify-content: center;
         }
       }
-      li.record-header{
+
+      li.record-header {
         background-color: #f5f5f5;
-        span{
+        font-weight: 700;
+
+        span {
           display: flex;
           justify-content: center;
           align-items: center;
