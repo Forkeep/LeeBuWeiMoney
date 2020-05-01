@@ -5,132 +5,17 @@
       <li :class=" tab_type === '+' ? 'selected' :'' " @click="tab_type = '+'">收入</li>
     </ul>
     <div class="inout-content">
-      <ol class="record-oneDay">
-        <li class="record-header" v-for="item in currentRecord" :key="item.key">
-          <span>今天日期</span>
-          <span>90元</span>
-          {{item}}
+      <ol class="record-oneDay" v-for="(records,index) in groupRecord" :key="records.key">
+        <li class="record-header">
+          <span>{{index}}</span>
+          <span>￥90</span>
         </li>
-        <li>
+        <li v-for="item in records" :key="item.key">
           <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
+            <span class="label">{{item.tags.length === 0 ? '无': outputLabel(item.tags)}}</span>
+            <span class="note">{{item.notes}}</span>
           </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-      </ol>
-      <ol class="record-oneDay">
-        <li class="record-header"><span>今天日期</span><span>90元</span></li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-      </ol>
-      <ol class="record-oneDay">
-        <li class="record-header"><span>今天日期</span><span>90元</span></li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-      </ol>
-      <ol class="record-oneDay">
-        <li class="record-header"><span>今天日期</span><span>90元</span></li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
-        </li>
-        <li>
-          <div class="money-message">
-            <span class="label">吃</span>
-            <span class="note">备注</span>
-          </div>
-          <span class="money">90元</span>
+          <span class="money">￥{{item.amount}}</span>
         </li>
       </ol>
     </div>
@@ -143,7 +28,6 @@
   import dayjs from 'dayjs';
 
   const api = dayjs();
-  console.log(api);
   @Component
   export default class Statistics extends Vue {
     tab_type = '-';
@@ -154,6 +38,19 @@
       console.log(this.$store.state.currentList);
       console.log(this.$store.state.groupRecord);
       return this.$store.state.currentList;
+    }
+
+    get groupRecord() {
+      this.currentRecord;
+      return this.$store.state.groupRecord;
+    }
+
+    outputLabel(labelList: string[]) {
+      let label = '';
+      for (let i = 0; i < labelList.length; i++) {
+        label += '、'+labelList[i];
+      }
+      return label.slice(1)
     }
   }
 </script>
@@ -199,6 +96,11 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          .note{
+            margin-left: 5px;
+            color: #666666;
+            font-size: 12px;
+          }
         }
         .money{
           display: flex;

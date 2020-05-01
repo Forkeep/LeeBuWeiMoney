@@ -4,9 +4,9 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 type rootState = {
-  recordList: RecordItem[],
-  currentList: RecordItem[],
-  groupRecord: { [key: string]: RecordItem[] }
+  recordList: RecordItem[];
+  currentList: RecordItem[];
+  groupRecord: { [key: string]: RecordItem[] };
 }
 
 export default new Vuex.Store({
