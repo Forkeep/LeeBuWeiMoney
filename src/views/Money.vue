@@ -41,7 +41,7 @@
 
     saveOneRecord() {
       const deepClone = recordModel.deepClone(this.record);
-      deepClone.createDate = new Date();
+      deepClone.createDate = new Date().toISOString();
       this.recordList.push(deepClone);
       if (this.recordList) {
         recordModel.saveRecord(this.recordList);

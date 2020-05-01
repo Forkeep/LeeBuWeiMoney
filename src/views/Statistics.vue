@@ -4,12 +4,12 @@
       <li :class=" tab_type === '-' ? 'selected' :'' " @click="tab_type = '-'">支出</li>
       <li :class=" tab_type === '+' ? 'selected' :'' " @click="tab_type = '+'">收入</li>
     </ul>
-    {{currentRecord}}
     <div class="inout-content">
       <ol class="record-oneDay">
-        <li class="record-header">
+        <li class="record-header" v-for="item in currentRecord" :key="item.key">
           <span>今天日期</span>
           <span>90元</span>
+          {{item}}
         </li>
         <li>
           <div class="money-message">
@@ -140,16 +140,21 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
+  import dayjs from 'dayjs';
 
+  const api = dayjs();
+  console.log(api);
   @Component
   export default class Statistics extends Vue {
-      tab_type = '-';
-      get currentRecord(){
-        this.$store.commit('deepCloneRecordList');
-        this.$store.commit('getCurrentList',this.tab_type);
-        console.log(this.$store.state.currentList);
-        return this.$store.state.currentList;
-      }
+    tab_type = '-';
+
+    get currentRecord() {
+      this.$store.commit('deepCloneRecordList');
+      this.$store.commit('getCurrentList', this.tab_type);
+      console.log(this.$store.state.currentList);
+      console.log(this.$store.state.groupRecord);
+      return this.$store.state.currentList;
+    }
   }
 </script>
 
