@@ -75,6 +75,8 @@
         return '昨天';
       } else if (day.isSame(now.subtract(2, 'day'), 'day')) {
         return '前天';
+      } else if (day.isSame(now, 'year')) {
+        return day.format('M月D日');
       } else {
         return day.format('YYYY年M月D日');
       }
