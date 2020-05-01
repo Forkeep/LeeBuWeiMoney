@@ -24,3 +24,15 @@ window.onload = function () {
     window.scrollTo(0, 1000);
   });
 };
+
+if (document.documentElement.clientWidth > 500) {
+  alert('在手机端操作体验更加~');
+  const img = document.createElement('img');
+  img.src = 'img/qrCode.png';
+  img.style.position = 'fixed';
+  img.style.left = '50%';
+  img.style.top = '50%';
+  img.style.transform = 'translate(-50%,-50%)';
+  img.style.boxShadow = '0 0 3px 3px rgba(0,0,0,0.5)';
+  document.body.appendChild(img);
+}
