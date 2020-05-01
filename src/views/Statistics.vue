@@ -5,12 +5,12 @@
       <li :class=" tab_type === '+' ? 'selected' :'' " @click="tab_type = '+'">收入</li>
     </ul>
     <div class="inout-content">
-      <ol class="record-oneDay" v-for="(records,index) in groupRecord" :key="records.key">
+      <ol class="record-oneDay" v-for="records in groupRecord" :key="records.key">
         <li class="record-header">
-          <span>{{beautify(index)}}</span>
-          <span>￥90</span>
+          <span>{{beautify(records.title)}}</span>
+          <span>￥{{countTotal(records.items)}}</span>
         </li>
-        <li v-for="item in records" :key="item.key">
+        <li v-for="item in records.items" :key="item.key">
           <div class="money-message">
             <span class="label">{{item.tags.length === 0 ? '无': outputLabel(item.tags)}}</span>
             <span class="note">{{item.notes}}</span>
@@ -27,7 +27,6 @@
   import {Component} from 'vue-property-decorator';
   import dayjs from 'dayjs';
 
-  const api = dayjs();
   @Component
   export default class Statistics extends Vue {
     tab_type = '-';
@@ -35,14 +34,28 @@
     get currentRecord() {
       this.$store.commit('deepCloneRecordList');
       this.$store.commit('getCurrentList', this.tab_type);
-      console.log(this.$store.state.currentList);
-      console.log(this.$store.state.groupRecord);
       return this.$store.state.currentList;
     }
 
     get groupRecord() {
+      const result: { title: string; items: RecordItem[] }[] = [];
       this.currentRecord;
-      return this.$store.state.groupRecord;
+      const groupRecord = this.$store.state.groupRecord;
+      for (const key in groupRecord) {
+        result.push({
+          title: key,
+          items: groupRecord[key]
+        });
+      }
+      this.sortByDate(result);
+      return result;
+    }
+
+    sortByDate(result: { title: string; items: RecordItem[] }[]) {
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      result.sort((a, b) => {
+        return dayjs(b.title).valueOf() - dayjs(a.title).valueOf();
+      });
     }
 
     outputLabel(labelList: string[]) {
@@ -62,9 +75,17 @@
         return '昨天';
       } else if (day.isSame(now.subtract(2, 'day'), 'day')) {
         return '前天';
-      }else {
+      } else {
         return day.format('YYYY年M月D日');
       }
+    }
+
+    countTotal(records: RecordItem[]) {
+      let total = 0;
+      for (let i = 0; i < records.length; i++) {
+        total += records[i].amount;
+      }
+      return total;
     }
   }
 </script>
